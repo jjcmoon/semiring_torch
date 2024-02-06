@@ -24,8 +24,8 @@ import torch
 
 x1 = torch.tensor([0.01, 0.06]).log()
 x2 = torch.tensor([0.03, 0.04]).log()
-dot_product = torch.logsumexp(x1 + x2, dim=0).exp()
-
+result = torch.logsumexp(x1 + x2, dim=0)
+result = result.exp()
 ```
 </td>
 <td>
@@ -38,7 +38,7 @@ from semiring_torch import *
 with ar.backend_like('log_semiring'):
     x1 = np.array([0.01, 0.06])
     x2 = np.array([0.03, 0.04])
-    dot_product = np.dot(x1, x2)
+    result = np.dot(x1, x2)
 
 ```
 
