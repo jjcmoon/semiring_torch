@@ -1,12 +1,12 @@
 # semiring_torch
 
-> Run your pytorch code on any semiring with a single line of code!
-
+Run your pytorch code on any semiring with a single line of code!
+Semiring_torch is built on top of [autoray](https://github.com/jcmgray/autoray).
 
 ### Example
 
 By using the logarithmic semiring, you can easily write numerically stable code. 
-In the following example, we compute the dot product of two vectors.
+In the following example, we compute a matrix product in log-space.
 
 <table>
 <tr>
@@ -19,13 +19,13 @@ In the following example, we compute the dot product of two vectors.
 ```python
 import torch
 
-
-
-
-x1 = torch.tensor([0.01, 0.06]).log()
-x2 = torch.tensor([0.03, 0.04]).log()
-result = torch.logsumexp(x1 + x2, dim=0)
-result = result.exp()
+x1 = torch.tensor([[0.1, 0.6], [0.1, 0.4]])
+x2 = torch.tensor([[0.5, 0.3], [0.2, 0.1]])
+x1 = x1.log()
+x2 = x2.log()
+result2 = x1[:, :, None] + x2[None, :, :]
+result2 = torch.logsumexp(result2, dim=1)
+result2 = result2.exp()
 ```
 </td>
 <td>
@@ -35,11 +35,10 @@ import autoray as ar
 from autoray import numpy as np
 from semiring_torch import *
 
-with ar.backend_like('log_semiring'):
-    x1 = np.array([0.01, 0.06])
-    x2 = np.array([0.03, 0.04])
-    result = np.dot(x1, x2)
-
+with ar.backend_like('log_torch'):
+    x1 = np.array([[0.1, 0.6], [0.1, 0.4]])
+    x2 = np.array([[0.5, 0.3], [0.2, 0.1]])
+    result = x1 @ x2
 ```
 
 </td>
