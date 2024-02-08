@@ -5,6 +5,13 @@ Semiring_torch is built on top of [autoray](https://github.com/jcmgray/autoray).
 
 > Warning: this is a proof of concept. Expect bugs and missing features.
 
+### Installation
+
+```bash
+pip install semiring-torch
+```
+
+
 ### Example
 
 By using the logarithmic semiring, you can easily write numerically stable code. 
@@ -46,5 +53,7 @@ with logarithmic_semiring:
 </tr>
 </table>
 
-### Supported semirings
+### Usage
+Semiring_torch only supports a subset of torch operations. In general, methods that only rely on additions and multiplications are supported (e.g. `torch.trace` or `torch.dot`), as well as methods that only affect the shape of the tensor (e.g. `x.reshape` or `x.transpose`). Functionality that goes beyond a semiring (e.g. `torch.sin`) will raise a runtime error. 
+
 Currently only the logarithmic semiring is supported, but more semirings can be added easily.
