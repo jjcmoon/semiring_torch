@@ -16,6 +16,10 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = [
+    "torch",
+    "autoray",
+]
 
 [project.urls]
 Homepage = "https://github.com/jjcmoon/semiring_torch"
