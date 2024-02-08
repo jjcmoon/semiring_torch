@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "semiring_torch"
+version = "0.0.1"
+authors = [
+  { name="Jaron Maene", email="jaron.maene@gmail.com" },
+]
+description = "Semiring programming in PyTorch"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/jjcmoon/semiring_torch"
+Issues = "https://github.com/jjcmoon/semiring_torch/issues"
