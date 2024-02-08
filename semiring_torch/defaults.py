@@ -34,6 +34,7 @@ def outer(input, other):
 
 DEFAULT_FUNCS = {
     'array': array,
+    'tensor': array,  # alias for 'array'
     'to_numpy': to_numpy,
     'eye': eye,
     'trace': trace,

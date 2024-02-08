@@ -2,7 +2,7 @@ import unittest
 import autoray as ar
 from autoray import numpy as np
 import numpy
-from semiring_torch import *
+from semiring_torch import log_torch
 
 
 def test_zeros():

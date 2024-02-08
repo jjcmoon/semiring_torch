@@ -3,6 +3,8 @@
 Run your pytorch code on any semiring with a single line of code!
 Semiring_torch is built on top of [autoray](https://github.com/jcmgray/autoray).
 
+> Warning: this is a proof of concept. Expect bugs and missing features.
+
 ### Example
 
 By using the logarithmic semiring, you can easily write numerically stable code. 
@@ -23,21 +25,20 @@ x1 = torch.tensor([[0.1, 0.6], [0.1, 0.4]])
 x2 = torch.tensor([[0.5, 0.3], [0.2, 0.1]])
 x1 = x1.log()
 x2 = x2.log()
-result2 = x1[:, :, None] + x2[None, :, :]
-result2 = torch.logsumexp(result2, dim=1)
-result2 = result2.exp()
+result = x1[:, :, None] + x2[None, :, :]
+result = torch.logsumexp(result, dim=1)
+result = result.exp()
 ```
 </td>
 <td>
 
 ```python
-import autoray as ar
-from autoray import numpy as np
-from semiring_torch import *
+from autoray import numpy as torch
+from semiring_torch import logarithmic_semiring
 
-with ar.backend_like('log_torch'):
-    x1 = np.array([[0.1, 0.6], [0.1, 0.4]])
-    x2 = np.array([[0.5, 0.3], [0.2, 0.1]])
+with logarithmic_semiring:
+    x1 = torch.tensor([[0.1, 0.6], [0.1, 0.4]])
+    x2 = torch.tensor([[0.5, 0.3], [0.2, 0.1]])
     result = x1 @ x2
 ```
 
@@ -46,4 +47,4 @@ with ar.backend_like('log_torch'):
 </table>
 
 ### Supported semirings
-Currently only the logarithmic semiring is supported. More semirings will be added soon.
+Currently only the logarithmic semiring is supported, but more semirings can be added easily.
